@@ -21,9 +21,9 @@ import CurrencyExchangeContainer from '../../containers/CurrencyExchangeContaine
 
 const Lesson1: React.FunctionComponent = () => {
     return (
-    <React.Fragment>
+    <>
         <CurrencyExchangeContainer />
-    </React.Fragment>
+    </>
   );
 };
 

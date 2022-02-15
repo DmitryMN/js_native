@@ -6,10 +6,18 @@ export enum ACTIONS_TYPE {
 
 
 export type ChangeCurrencyFieldType = {
+    type: ACTIONS_TYPE.CHANGE_CURRENCY_FIELD_TYPE;
+    payload: {
+        amountOfBYN: string,
+        amountOfCurrency: string,
+    };
 };
 
 // @ts-ignore
 export const ChangeCurrencyFieldAC = (amountOfBYN: string, amountOfCurrency: string): ChangeCurrencyFieldType => {
+    return {type: ACTIONS_TYPE.CHANGE_CURRENCY_FIELD_TYPE,
+        payload: { amountOfBYN, amountOfCurrency },
+    }
 };
 
 export type ChangeAction = {
