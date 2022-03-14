@@ -54,6 +54,23 @@ const counter = makeCounter();
 // decrease: -1
 // reset: установить счетчик в 0;
 // set: установить счетчик в заданное значение;
+function makeCounter2(num: number) {
+    let n = num;
+    return {
+        increase() {
+            n += 1;
+        },
+        decrease() {
+            n -= 1;
+        },
+        reset() {
+            n = 0;
+        },
+        set(a: number) {
+            n = a;
+        },
+    }
+}
 
 // Task 04*
 // Реализовать функцию superSum которая принимает число в качестве аргумента, которое указывает на количество слагаемых
@@ -64,6 +81,20 @@ const counter = makeCounter();
 // 4) superSum(3)(2,5,3) //10
 // 5) superSum(3)(2,5)(3) //10
 // 6) superSum(3)(2,5)(3,9) //10
+//@ts-ignore
+function superSum(n) {
+    let arr: number[] = [];
+    if(n <= 1) return n;
+		function helper(...args: number[]) {
+			arr = [...arr, ...args];
+			if(arr.length > n) {
+				return arr.reduce((sum, value) => sum + value);
+			} else {
+				return helper;
+			}
+		}
+		return helper;
+}
 
 // P.S. типизируйте только аргументы, а при вызове функции используйте @ts-ignore
 
