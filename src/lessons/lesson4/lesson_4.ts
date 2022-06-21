@@ -4,9 +4,45 @@ console.log('lesson 4');
 // https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
 
 
+//task js2
+
+setTimeout(() => console.log(1), 0);
+console.log(2);
+(() => console.log(3))();
+Promise.resolve(console.log(4));
+
+//task js2
+
+new Promise((resolve, reject) => { console.log(1) });
+new Promise((resolve, reject) => {
+    setTimeout(() => console.log(2), 0);
+});
+Promise.resolve(setTimeout(() => console.log(3), 0));
+console.log(4);
+Promise.reject(() => console.log(5));
+
+//task js2
+
+async function sleep(ms: number) {
+    return new Promise((res, rej) => {
+      setTimeout(() => {
+      console.log(ms);
+      res("");
+      }, ms * 100);
+    });
+  }
+  
+  async function show() {
+      await sleep(3);
+      await sleep(2);
+      await sleep(1);
+  }
+  show();
+
 // Task 01
 // Создайте промис, который постоянно находиться в состоянии pending.
 // В конструкторе промиса выведите в консоль сообщение "Promise is created".
+
 
 
 // Task 02
