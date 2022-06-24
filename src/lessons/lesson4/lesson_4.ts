@@ -43,18 +43,32 @@ async function sleep(ms: number) {
 // Создайте промис, который постоянно находиться в состоянии pending.
 // В конструкторе промиса выведите в консоль сообщение "Promise is created".
 
-
+const promise01 = new Promise((res, rej) => {
+  console.log("Promise is created");
+  res("");
+});
 
 // Task 02
 // Создайте промис, который после создания сразу же переходит в состояние resolve
 // и возвращает строку 'Promise Data'
 // Получите данные промиса и выведите их в консоль
 
+const promise2 = new Promise((res, rej) => {
+  res("Promise Data");
+});
+
+promise2.then(console.log);
 
 // Task 03
 // Создайте промис, который после создания сразу же переходит в состояние rejected
 // и возвращает строку 'Promise Error'
 // Получите данные промиса и выведите их в консоль
+
+const promise3 = new Promise((res, rej) => {
+  rej("Promise Error");
+});
+
+promise3.then(console.log);
 
 
 // Task 04
@@ -63,6 +77,13 @@ async function sleep(ms: number) {
 // и возвращает строку 'Promise Data'
 // Получите данные промиса и выведите их в консоль
 
+const promise4 = new Promise((res, rej) => {
+  setTimeout(() => {
+    res("Promise Data");
+  }, 3000);
+});
+
+promise4.then(console.log);
 
 // Task 05
 // Создайте литерал объекта handlePromise со следующими свойствами:
@@ -85,6 +106,20 @@ async function sleep(ms: number) {
 // Создайте функцию print, которая выводит в консоль значение своего параметра
 // Добавьте два метода then и передайте созданные функции.
 
+const promise6 = new Promise<string>((res, rej) => {
+  setTimeout(() => {
+    res("My name is");
+  }, 1000);
+});
+
+const onSucces6 = (text: string) => {
+  return text + " " + "Alex"
+}
+const print = (text: string) => {
+  console.log(text);
+}
+
+promise6.then(onSucces6).then(print);
 
 // Task 7
 // Создайте три промиса. Первый промис возвращает объект { name: "Anna" } через 2с,
@@ -92,6 +127,42 @@ async function sleep(ms: number) {
 // Получите результаты работы промисов, объедините свойства объектов
 // и выведите в консоль {name, age, city}
 
+type NameType = {
+  name: string
+}
+type AgeType = {
+  age: number
+}
+type CityType = {
+  city: string
+}
+
+async function nameUser() {
+  return new Promise<NameType>((res, rej) => {
+    res({name: "Ann"});
+  });
+}
+
+async function ageUser() {
+  return new Promise<AgeType >((res, rej) => {
+    res({age: 22});
+  });
+}
+
+async function cityUser() {
+  return new Promise<CityType>((res, rej) => {
+    res({city: "Moscow"});
+  });
+}
+
+async function userInfo() {
+  let {name} = await nameUser();
+  let {age} = await ageUser();
+  let {city} = await cityUser();
+  console.log(`name: ${name}, age: ${age}, city: ${city}`);
+}
+
+userInfo();
 
 
 // just a plug
